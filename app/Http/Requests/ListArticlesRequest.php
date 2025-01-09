@@ -15,8 +15,10 @@ class ListArticlesRequest extends FormRequest
             'filters' => ['nullable', 'array'],
             'filters.keyword' => ['nullable', 'string'],
             'filters.date' => ['nullable', 'date'],
-            'filters.category' => ['nullable', 'string'],
-            'filters.source' => ['nullable', 'string'],
+            'filters.category_ids' => ['nullable', 'array'],
+            'filters.category_ids.*' => ['nullable', 'integer', 'exists:categories,id'],
+            'filters.source_ids' => ['nullable', 'array'],
+            'filters.source_ids.*' => ['nullable', 'integer', 'exists:sources,id'],
 
             'page' => ['nullable', 'integer', 'min:1'],
             'limit' => ['nullable', 'integer', 'min:1', 'max:100']

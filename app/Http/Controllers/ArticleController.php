@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Services\ArticleService;
 use Illuminate\Http\Response;
 
-class ArticleController
+class ArticleController extends Controller
 {
     protected ArticleService $articleService;
 

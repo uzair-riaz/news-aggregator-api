@@ -36,11 +36,14 @@ class ArticleRepository
         if (isset($filters['date'])) {
             $query->date($filters['date']);
         }
-        if (isset($filters['category_id'])) {
-            $query->categoryId($filters['category_id']);
+        if (isset($filters['category_ids'])) {
+            $query->categoryIds($filters['category_ids']);
         }
-        if (isset($filters['source_id'])) {
-            $query->sourceId($filters['source_id']);
+        if (isset($filters['source_ids'])) {
+            $query->sourceIds($filters['source_ids']);
+        }
+        if (isset($filters['author_ids'])) {
+            $query->sourceIds($filters['author_ids']);
         }
         $query->with(['source', 'category', 'author']);
 

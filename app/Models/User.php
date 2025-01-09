@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * User preferences
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function preferences()
+    {
+        return $this->hasOne(UserPreference::class);
+    }
 }

@@ -53,22 +53,33 @@ class ArticleQueryBuilder
     /**
      * Apply category filter
      *
-     * @param $categoryId
+     * @param $categoryIds
      * @return void
      */
-    public function categoryId($categoryId)
+    public function categoryIds($categoryIds)
     {
-        $this->query = $this->query->where('category_id', $categoryId);
+        $this->query = $this->query->whereIn('category_id', $categoryIds);
     }
 
     /**
      * Apply source filter
      *
-     * @param $sourceId
+     * @param $sourceIds
      * @return void
      */
-    public function sourceId($sourceId)
+    public function sourceIds($sourceIds)
     {
-        $this->query = $this->query->where('source_id', $sourceId);
+        $this->query = $this->query->whereIn('source_id', $sourceIds);
+    }
+
+    /**
+     * Apply author filter
+     *
+     * @param $authorIds
+     * @return void
+     */
+    public function authorIds($authorIds)
+    {
+        $this->query = $this->query->whereIn('author_id', $authorIds);
     }
 }
