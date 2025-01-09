@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Filters\ArticleQueryBuilder;
 use App\Repositories\ArticleRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -13,17 +12,6 @@ class ArticleService
     public function __construct(ArticleRepository $articleRepository)
     {
         $this->articleRepository = $articleRepository;
-    }
-
-    /**
-     * Get single article by id
-     *
-     * @param $articleId
-     * @return mixed
-     */
-    public function getById($articleId)
-    {
-        return $this->articleRepository->getById($articleId);
     }
 
     /**
