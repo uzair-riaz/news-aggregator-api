@@ -6,8 +6,27 @@ use App\Filters\ArticleQueryBuilder;
 use App\Models\Article;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ArticleRepository
+class ArticleRepository implements Repository
 {
+    /**
+     * Create or update article
+     *
+     * @param array $data
+     * @return void
+     */
+    public function create(array $data)
+    {
+        return Article::updateOrCreate(
+            [
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'url' => $data['url'],
+                'published_at' => $data['published_at'],
+            ],
+            $data
+        );
+    }
+
     /**
      * Get article by id
      *
