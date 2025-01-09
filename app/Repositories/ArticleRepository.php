@@ -43,7 +43,7 @@ class ArticleRepository
             $query->sourceIds($filters['source_ids']);
         }
         if (isset($filters['author_ids'])) {
-            $query->sourceIds($filters['author_ids']);
+            $query->authorIds($filters['author_ids']);
         }
         $query->with(['source', 'category', 'author']);
 
