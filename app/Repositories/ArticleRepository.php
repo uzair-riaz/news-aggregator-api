@@ -17,25 +17,9 @@ class ArticleRepository implements Repository
     public function create(array $data)
     {
         return Article::updateOrCreate(
-            [
-                'title' => $data['title'],
-                'description' => $data['description'],
-                'url' => $data['url'],
-                'published_at' => $data['published_at'],
-            ],
+            ['url' => $data['url']],
             $data
         );
-    }
-
-    /**
-     * Get article by id
-     *
-     * @param $articleId
-     * @return mixed
-     */
-    public function getById($articleId)
-    {
-        return Article::find($articleId);
     }
 
     /**

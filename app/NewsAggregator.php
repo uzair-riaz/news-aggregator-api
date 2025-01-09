@@ -19,7 +19,6 @@ class NewsAggregator
     protected AuthorRepository $authorRepository;
     protected CategoryRepository $categoryRepository;
     protected SourceRepository $sourceRepository;
-    protected $logger;
 
     public function __construct(array $apis, ArticleRepository $articleRepository, AuthorRepository $authorRepository, CategoryRepository $categoryRepository, SourceRepository $sourceRepository)
     {
@@ -28,7 +27,6 @@ class NewsAggregator
         $this->authorRepository = $authorRepository;
         $this->categoryRepository = $categoryRepository;
         $this->sourceRepository = $sourceRepository;
-        $this->logger = Log::channel('news');
     }
 
     /**
@@ -40,17 +38,17 @@ class NewsAggregator
     {
         /** @var NewsSource $api */
         foreach ($this->apis as $api) {
-            $this->logger->info('Fetching news from ' . $api::class);
+            Log::info('Fetching news from ' . $api::class);
             try {
                 $page = 1;
                 $pageSize = config('news.page_size');
                 try {
                     do {
-                        $this->logger->info('Fetching page ' . $page);
+                        Log::info('Fetching page ' . $page);
                         $data = $api->fetchNews($page);
-                        $this->logger->info('Page ' . $page . ' fetching successful');
+                        Log::info('Page ' . $page . ' fetching successful');
 
-                        $this->logger->info('Saving page ' . $page);
+                        Log::info('Saving page ' . $page);
                         DB::transaction(function () use ($data) {
                             foreach ($data['news'] as $newsItem) {
                                 DB::transaction(function () use ($newsItem) {
@@ -66,16 +64,16 @@ class NewsAggregator
                                 });
                             }
                         });
-                        $this->logger->info('Page ' . $page . ' saved successfully');
+                        Log::info('Page ' . $page . ' saved successfully');
 
                         $page++;
                         $total = $data['total'];
                     } while ($page <= ceil($total / $pageSize));
                 } catch (\RuntimeException $e) {
-                    $this->logger->error($e->getMessage());
+                    Log::error($e->getMessage());
                 }
             } catch (ClientException $ex) {
-                $this->logger->error($ex->getMessage());
+                Log::error($ex->getMessage());
             }
         }
     }

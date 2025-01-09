@@ -25,6 +25,9 @@ class UserPreferenceService
      */
     public function savePreferences($userId, $preferences)
     {
-        return $this->userPreferenceRepository->save($userId, $preferences);
+        return $this->userPreferenceRepository->create([
+            'user_id' => $userId,
+            'preferences' => $preferences
+        ]);
     }
 }

@@ -14,7 +14,7 @@ class UserRepository
      */
     public function create(array $attributes)
     {
-        return User::create($attributes);
+        return User::firstOrCreate($attributes);
     }
 
     /**

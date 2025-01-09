@@ -4,20 +4,19 @@ namespace App\Repositories;
 
 use App\Models\UserPreference;
 
-class UserPreferenceRepository
+class UserPreferenceRepository implements Repository
 {
     /**
-     * Save user preference
+     * Create or update user preference
      *
-     * @param $userId
-     * @param $preferences
+     * @param array $data
      * @return mixed
      */
-    public function save($userId, $preferences)
+    public function create(array $data)
     {
         return UserPreference::updateOrCreate(
-            ['user_id' => $userId],
-            ['preferences' => $preferences]
+            ['user_id' => $data['user_id']],
+            ['preferences' => $data['preferences']]
         );
     }
 }
