@@ -1,6 +1,6 @@
 About
 -----
-A news aggregator service that pulls articles from various sources and provides endpoints for a frontend application to consume
+A news aggregator service that pulls articles from various sources and provides endpoints for a frontend application to consume.
 
 Prerequisites
 -----
