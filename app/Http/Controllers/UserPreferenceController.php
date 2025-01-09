@@ -79,7 +79,7 @@ class UserPreferenceController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/user/personalized-feed",
+     *     path="/api/preferences",
      *     summary="Save user preferences",
      *     description="Save or update the preferences of the currently authenticated user.",
      *     operationId="saveUserPreferences",
@@ -223,7 +223,7 @@ class UserPreferenceController extends Controller
     public function personalizedNewsFeed()
     {
         $userPreferences = Auth::user()->preferences()->first();
-        $preferences = $userPreferences['preferences'];
+        $preferences = $userPreferences ? $userPreferences['preferences'] : null;
         if (!$preferences) {
             return response()->json([
                 "message" => "Preferences not found, cannot generate personalized news feed."
