@@ -45,4 +45,4 @@ This project uses docker to spin up three service containers:
 
 - `mysql`: MySQL server that acts as the local database for the project. Project is DB agnostic, however.
 - `api`: Laravel application container that handles authentication tokens and exposes other APIs to the frontend module.
-- `scheduler`: Same as `api` but this one focuses solely on running the scheduled tasks. It's entrypoint is set in a way that it executes the artisan command `schedule:run` every 60 seconds. `sync:news` is the artisan command that is currently scheduled to run every thirty minutes.
+- `scheduler`: Same as `api` but this one focuses solely on running the scheduled tasks. It's entrypoint is set in a way that it executes the artisan command `schedule:run` every 60 seconds. `aggregate:news` is the artisan command that is currently scheduled to run every thirty minutes.
